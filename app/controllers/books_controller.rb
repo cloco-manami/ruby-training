@@ -20,6 +20,12 @@ class BooksController < ApplicationController
     render json: { status: 'SUCCESS', message: 'Loaded the book', data: @book }
   end
 
+  def destroy
+    Book.find(params[:id]).destroy!
+
+    head :no_content
+  end
+
 
 
   private
