@@ -6,7 +6,7 @@ class BooksController < ApplicationController
 
   def create
     # #todo : mana needs to create book with parameters from api
-    book = Book.new(title: "Ruby book", content: "practice")
+    book = Book.new(book_params)
 
     if book.save
       render json: book, status: :created
@@ -20,9 +20,10 @@ class BooksController < ApplicationController
     render json: { status: 'SUCCESS', message: 'Loaded the book', data: @book }
   end
 
-  private
 
-  # def book_params
-  #   params.require(:book).permit(:title, :content)
-  # end
+
+  private
+  def book_params
+    params.require(:book).permit(:title, :content)
+  end
 end
