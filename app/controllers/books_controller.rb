@@ -26,7 +26,14 @@ class BooksController < ApplicationController
     head :no_content
   end
 
-
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      render json: { status: 'SUCCESS', message: 'Updated the book', data: @book }
+    else
+      render json: { status: 'ERROR', message: 'Not updated', data: @book.errors }
+    end
+  end
 
   private
   def book_params
