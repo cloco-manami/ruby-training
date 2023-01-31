@@ -23,7 +23,7 @@ class BooksController < ApplicationController
   def destroy
     Book.find(params[:id]).destroy!
 
-    head :no_content
+    render json: { status: 'SUCCESS', message: 'Deleted the book' }
   end
 
   def update
